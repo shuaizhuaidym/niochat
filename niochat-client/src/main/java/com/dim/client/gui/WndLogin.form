@@ -111,14 +111,14 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="labMessage" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtAccount" min="-2" pref="244" max="-2" attributes="0"/>
+                              <Component id="txtAccount" min="-2" pref="246" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="btnForgotten" min="-2" pref="66" max="-2" attributes="0"/>
-                      <Component id="btnRegister" max="32767" attributes="0"/>
+                      <Component id="btnApply" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -135,15 +135,15 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtAccount" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnRegister" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtAccount" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="btnApply" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtPassword" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="btnForgotten" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -169,7 +169,6 @@
             <Property name="name" type="java.lang.String" value="txtAccount"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAccountActionPerformed"/>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtAccountFocusGained"/>
           </Events>
         </Component>
@@ -189,7 +188,7 @@
             <Property name="text" type="java.lang.String" value=" "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnRegister">
+        <Component class="javax.swing.JButton" name="btnApply">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x7533;&#x8bf7;&#x5e10;&#x53f7;"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -199,7 +198,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegisterActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnApplyActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnForgotten">

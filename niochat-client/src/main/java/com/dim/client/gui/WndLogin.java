@@ -50,7 +50,7 @@ public class WndLogin extends javax.swing.JFrame {
         txtAccount = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         labMessage = new javax.swing.JLabel();
-        btnRegister = new javax.swing.JButton();
+        btnApply = new javax.swing.JButton();
         btnForgotten = new javax.swing.JButton();
         btnLogin = new javax.swing.JButton();
         btnAbort = new javax.swing.JButton();
@@ -84,11 +84,6 @@ public class WndLogin extends javax.swing.JFrame {
         txtAccount.setText("521621");
         txtAccount.setToolTipText("");
         txtAccount.setName("txtAccount");
-        txtAccount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAccountActionPerformed(evt);
-            }
-        });
         txtAccount.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtAccountFocusGained(evt);
@@ -111,11 +106,11 @@ public class WndLogin extends javax.swing.JFrame {
 
         labMessage.setText(" ");
 
-        btnRegister.setText("申请帐号");
-        btnRegister.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+        btnApply.setText("申请帐号");
+        btnApply.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnApply.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegisterActionPerformed(evt);
+                btnApplyActionPerformed(evt);
             }
         });
 
@@ -138,11 +133,11 @@ public class WndLogin extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labMessage)
-                            .addComponent(txtAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnForgotten, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(btnApply, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         pnlLoginLayout.setVerticalGroup(
             pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,12 +150,12 @@ public class WndLogin extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(txtAccount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRegister))
+                            .addComponent(txtAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnApply))
                         .addGap(17, 17, 17)))
                 .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnForgotten))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -221,13 +216,7 @@ public class WndLogin extends javax.swing.JFrame {
         getContentPane().setBackground(new Color(240, 240, 240));
         pnlLegend.setBackground(new Color(240, 240, 240));
         pnlLogin.setBackground(new Color(240, 240, 240));
-        txtAccount.setSize(132, 8);
-        txtPassword.setSize(132, 8);
-    }
-    private void txtAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAccountActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAccountActionPerformed
-    
+    }    
     private void btnAbortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbortActionPerformed
         System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_btnAbortActionPerformed
@@ -282,9 +271,11 @@ public class WndLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtPasswordKeyPressed
 
-    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        
-    }//GEN-LAST:event_btnRegisterActionPerformed
+    private void btnApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApplyActionPerformed
+        WndRegister registerWindow=new WndRegister();
+        registerWindow.setLocationRelativeTo(null);
+        registerWindow.setVisible(true);
+    }//GEN-LAST:event_btnApplyActionPerformed
 
     public void relocate(javax.swing.JFrame frm){
         //靠右侧显示联系人列表
@@ -295,54 +286,11 @@ public class WndLogin extends javax.swing.JFrame {
         int y = 1;
         frm.setLocation(x, y);
     }
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /*
-         * Set the Nimbus look and feel
-         */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the
-         * default look and feel. For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(WndLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(WndLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(WndLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(WndLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /*
-         * Create and display the form
-         */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            
-            public void run() {
-                WndLogin wndLogin = new WndLogin();
-                wndLogin.setLocationRelativeTo(null);
-                wndLogin.setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbort;
+    private javax.swing.JButton btnApply;
     private javax.swing.JButton btnForgotten;
     private javax.swing.JButton btnLogin;
-    private javax.swing.JButton btnRegister;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel labMessage;
