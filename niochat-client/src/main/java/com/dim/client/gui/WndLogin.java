@@ -4,14 +4,17 @@
  */
 package com.dim.client.gui;
 
+import com.dim.client.Const;
 import com.dim.client.domain.Contact;
 import com.dim.client.net.Client;
 import java.awt.Color;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,8 +27,6 @@ public class WndLogin extends javax.swing.JFrame {
     
     private Logger logger = LogManager.getLogger(WndLogin.class.getName());
     
-    public static final String server="192.168.9.128";
-
     /**
      * Creates new form WndLogin
      */
@@ -239,8 +240,14 @@ public class WndLogin extends javax.swing.JFrame {
             return;
         }
         
-        final Client clt=new Client(server,9600,act,new String(pwd));
+        final Client clt=new Client(Const.server,Const.port,act,new String(pwd));
         new Thread(clt).start();
+        
+        try {
+            clt.login(act, new String(pwd));
+        } catch (IOException ex) {
+            logger.catching(ex);
+        }
         //TODO 读取联系人列表，显示好友窗口
         java.awt.EventQueue.invokeLater(new Runnable() {
 

@@ -24,7 +24,7 @@ public class Client implements Runnable {
     private String pwd;
     private ByteBuffer readBuffer = ByteBuffer.allocate(1024);
     private ByteBuffer writeBuffer = ByteBuffer.allocate(1024);
-    private SocketChannel client;
+    private SocketChannel channel;
 
     public Client(String host, Integer port, String account, String pwd) {
         this.host = host;
@@ -36,7 +36,6 @@ public class Client implements Runnable {
     public void run() {
         try {
             connect();
-            login(account, pwd);
         } catch (IOException ex) {
             logger.catching(ex);
         }
@@ -44,26 +43,56 @@ public class Client implements Runnable {
     //connect to server
 
     public void connect() throws IOException {
-        client = SocketChannel.open();
-        client.connect(new InetSocketAddress(host, port));
+        channel = SocketChannel.open();
+        channel.connect(new InetSocketAddress(host, port));
 
         logger.info("connect success.");
     }
+    
+    /***
+     * apply new account
+     * @param account
+     * @param password
+     * @return 
+     */
+    public Integer applyAccount(String account, String password) throws IOException {
+        Message msg = new Message(0, null, "account=" + account + "&password=" + password);
+        logger.info("apply new account");
+        writeBuffer.clear();
+        msg.toBytes(writeBuffer);
+        writeBuffer.flip();
+        int i = channel.write(writeBuffer);
+        logger.info(i + " writed.");
 
-    //verify user account and password
+        readBuffer.clear();
+        channel.read(readBuffer);
+
+        logger.info("account apply result：" + new String(readBuffer.array()));
+        //TODO deal  with result
+        return 0;
+    }
+
+    /**
+     * login
+     * @param account
+     * @param pwd
+     * @return
+     * @throws IOException 
+     */    
     public Integer login(String account, String pwd) throws IOException {
         logger.info("start login.");
-        Message msg = new Message(0,null, "account=" + account + "&password=" + pwd);
+        Message msg = new Message(1,null, "account=" + account + "&password=" + pwd);
         writeBuffer.clear();
         msg.toBytes(writeBuffer);
         writeBuffer.flip();
 
-        int i = client.write(writeBuffer);
+        int i = channel.write(writeBuffer);
         logger.info(i + " writed.");
 
         readBuffer.clear();
-        client.read(readBuffer);
+        channel.read(readBuffer);
         logger.info("login result : " + new String(readBuffer.array()));
+        //TODO deal  with result
         return 0;
     }
 
@@ -73,11 +102,11 @@ public class Client implements Runnable {
         writeBuffer.put(data.getBytes());
         writeBuffer.flip();
 
-        client.write(writeBuffer);
+        channel.write(writeBuffer);
     }
 
     //receive message
     public void receive() throws IOException {
-        client.read(readBuffer);
+        channel.read(readBuffer);
     }
 }

@@ -4,10 +4,15 @@
  */
 package com.dim.client.gui;
 
+import com.dim.client.Const;
+import com.dim.client.net.Client;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
@@ -15,6 +20,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class WndRegister extends javax.swing.JFrame {
 
+    private Logger logger = LogManager.getLogger(WndRegister.class.getName());
     /**
      * Creates new form WndRegister
      */
@@ -27,9 +33,9 @@ public class WndRegister extends javax.swing.JFrame {
     private void beauty(){
         getContentPane().setBackground(new Color(240, 240, 240));
         pnlInput.setBackground(new Color(240, 240, 240));
-        txtAccount.setSize(200, 20);
-        jpwd.setSize(200, 20);
-        jpwd2.setSize(200, 20);
+        txtAccount.setSize(200, 15);
+        jpwd.setSize(200, 15);
+        jpwd2.setSize(200, 15);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -171,12 +177,18 @@ public class WndRegister extends javax.swing.JFrame {
         } else if (pwd.length < 1 || cfrmpwd.length < 1) {
             JOptionPane.showMessageDialog(this, "Please input password and confirm password");
         } else {
-            String strPwd = pwd.toString();
-            String strCfrmPwd=cfrmpwd.toString();
-            if(strPwd.equals(strCfrmPwd)){
+            String strPwd = new String(pwd);
+            String strCfrmPwd=new String(pwd);
+            if(!strPwd.equals(strCfrmPwd)){
                 JOptionPane.showMessageDialog(this, "The passwords you entered do not match. Please re - enter your passwords.");
             }else{
-                //TODO
+                final Client clt=new Client(Const.server,Const.port,account,new String(pwd));
+                new Thread(clt).start();
+                try {
+                    clt.applyAccount(account, strPwd);
+                } catch (IOException ex) {
+                    logger.catching(ex);
+                }
             }
         }
     }//GEN-LAST:event_btnRegisterActionPerformed
