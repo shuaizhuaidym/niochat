@@ -10,18 +10,16 @@ import java.nio.ByteBuffer;
  *
  * @author yanming_dai
  */
-public class LoginMessage extends Message{
+public class LoginResponse extends Message{
     
     private String account;
     
     private String password;
     
-    
-
-    public LoginMessage() {
+    public LoginResponse() {
     }
 
-    public LoginMessage(String account, String password) {
+    public LoginResponse(String account, String password) {
         this.account = account;
         this.password = password;
     }
@@ -34,6 +32,7 @@ public class LoginMessage extends Message{
         buf.put(account.getBytes());
         buf.put(MsgConst.AND);
         buf.put("password=".getBytes());
+        buf.put(password.getBytes());
         buf.put(MsgConst.LINE_DIV);
         return buf;
     }

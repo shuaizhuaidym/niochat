@@ -5,7 +5,7 @@
 package com.dim.client.gui;
 
 import com.dim.client.domain.Contact;
-import com.dim.client.net.Client;
+import com.dim.client.net.Connection;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -23,13 +23,13 @@ import org.apache.logging.log4j.Logger;
 public class WndContactList extends javax.swing.JFrame {
 
     private final Logger logger = LogManager.getLogger(WndContactList.class);
-    private Client connection;
+    private Connection connection;
 
     /**
      * Creates new form ContactList
      */
     @SuppressWarnings("CallToThreadDumpStack")
-    public WndContactList(Client connection) {
+    public WndContactList(Connection connection) {
         this.connection=connection;
         //关闭提示
         this.addWindowListener(new CloseListener());

@@ -4,12 +4,14 @@
  */
 package com.dim.server.data;
 
-import com.dim.server.msg.LoginMessage;
+import com.dim.server.msg.LoginResponse;
 import com.dim.server.msg.RegisterMessage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 
@@ -94,7 +96,7 @@ public class DBTool {
      * @param request
      * @return 
      */
-    public static LoginMessage login(LoginMessage request) {
+    public static LoginResponse login(LoginResponse request) {
         if (connection == null) {
             setup(null, null, null);
         }
@@ -108,11 +110,11 @@ public class DBTool {
             
             logger.info("register complete successful.");
             
-            LoginMessage msg=new LoginMessage();
+            LoginResponse msg=new LoginResponse();
             while (rst.next()) {
-                String act=rst.getString(1);
+                String act=rst.getString(2);
                 msg.setAccount(act);
-                String password=rst.getString(2);
+                String password=rst.getString(3);
                 msg.setPassword(password);
             }
             return msg;
@@ -121,5 +123,15 @@ public class DBTool {
         }
 
         return null;
+    }
+    /**
+     * query contacts by account and password
+     * @return 
+     */
+    public static List<Object>queryContacts(String account,String pwd){
+        List<Object>contacts=new ArrayList<Object>();
+        if(contacts.isEmpty())
+            throw new NullPointerException();
+        return contacts;
     }
 }

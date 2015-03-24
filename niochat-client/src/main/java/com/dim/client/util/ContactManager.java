@@ -6,7 +6,7 @@ package com.dim.client.util;
 
 import com.dim.client.domain.Contact;
 import com.dim.client.gui.WndContactList;
-import com.dim.client.msg.MessageReadHandler;
+import com.dim.client.handler.MessageReadHandler;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

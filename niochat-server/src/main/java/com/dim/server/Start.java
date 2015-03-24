@@ -3,7 +3,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import com.dim.server.net.Server;
 /**
- * Hello world!
+ * start server at speciliazed port
  *
  */
 public class Start {

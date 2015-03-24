@@ -5,7 +5,7 @@
 package com.dim.server.handler;
 
 import com.dim.server.data.DBTool;
-import com.dim.server.msg.LoginMessage;
+import com.dim.server.msg.LoginResponse;
 import com.dim.server.msg.Message;
 
 /**
@@ -14,7 +14,7 @@ import com.dim.server.msg.Message;
  */
 public class LoginHandler{
 
-    public LoginMessage handle(Message message) {
-        return DBTool.login((LoginMessage)message);
+    public LoginResponse handle(Message message) {
+        return DBTool.login((LoginResponse)message);
     }
 }

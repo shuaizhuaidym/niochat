@@ -15,9 +15,9 @@ import org.apache.logging.log4j.LogManager;
  *
  * @author yanming_dai
  */
-public class Client implements Runnable {
+public class Connection implements Runnable {
 
-    private org.apache.logging.log4j.Logger logger = LogManager.getLogger(Client.class.getName());
+    private org.apache.logging.log4j.Logger logger = LogManager.getLogger(Connection.class.getName());
     private String host;
     private Integer port;
     private String account;
@@ -26,7 +26,7 @@ public class Client implements Runnable {
     private ByteBuffer writeBuffer = ByteBuffer.allocate(1024);
     private SocketChannel channel;
 
-    public Client(String host, Integer port, String account, String pwd) {
+    public Connection(String host, Integer port, String account, String pwd) {
         this.host = host;
         this.port = port;
         this.account = account;
@@ -85,10 +85,10 @@ public class Client implements Runnable {
         writeBuffer.clear();
         msg.toBytes(writeBuffer);
         writeBuffer.flip();
-
+        //发送信息
         int i = channel.write(writeBuffer);
         logger.info(i + " writed.");
-
+        //接收信息
         readBuffer.clear();
         channel.read(readBuffer);
         logger.info("login result : " + new String(readBuffer.array()));

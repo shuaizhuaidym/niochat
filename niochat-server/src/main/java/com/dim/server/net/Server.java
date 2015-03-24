@@ -25,7 +25,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class Server {
 
-    private static final Logger logger = LogManager.getLogger(Start.class);
+    private static final Logger logger = LogManager.getLogger(Server.class);
     
     private int port = 9600;
 

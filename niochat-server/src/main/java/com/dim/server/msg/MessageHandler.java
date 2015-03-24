@@ -51,12 +51,20 @@ public class MessageHandler extends ChannelInboundHandlerAdapter {
             
             logger.info("account: "+account);
             logger.info("password: "+password);
-            LoginMessage lrequest=new LoginMessage(account,password);
+            LoginResponse lrequest=new LoginResponse(account,password);
             
-            LoginMessage response = new LoginHandler().handle(lrequest);
-            ctx.write(response.toBytes());
-        //error
-        } else {
+            LoginResponse response = new LoginHandler().handle(lrequest);
+            ctx.writeAndFlush(response.toBytes());
+            ctx.writeAndFlush("\r\n".getBytes());
+        }else if(50==it){
+            //TOTO chat
+        } else if(51==it){
+            //reset password
+        }else if(52==it){
+            //TODO add contact
+        }else if(53==it){
+            //TODO remove contact
+        }else {
             ctx.write("[ERROR]UNKNOWN MESSAGE TYPE");
         }
     }

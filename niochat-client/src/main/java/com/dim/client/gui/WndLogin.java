@@ -6,7 +6,7 @@ package com.dim.client.gui;
 
 import com.dim.client.Const;
 import com.dim.client.domain.Contact;
-import com.dim.client.net.Client;
+import com.dim.client.net.Connection;
 import java.awt.Color;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -218,8 +218,9 @@ public class WndLogin extends javax.swing.JFrame {
         pnlLegend.setBackground(new Color(240, 240, 240));
         pnlLogin.setBackground(new Color(240, 240, 240));
     }    
+    
     private void btnAbortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbortActionPerformed
-        System.exit(0);        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_btnAbortActionPerformed
 
     //登录按钮事件
@@ -240,7 +241,7 @@ public class WndLogin extends javax.swing.JFrame {
             return;
         }
         
-        final Client clt=new Client(Const.server,Const.port,act,new String(pwd));
+        final Connection clt=new Connection(Const.server,Const.port,act,new String(pwd));
         new Thread(clt).start();
         
         try {
@@ -248,7 +249,8 @@ public class WndLogin extends javax.swing.JFrame {
         } catch (IOException ex) {
             logger.catching(ex);
         }
-        //TODO 读取联系人列表，显示好友窗口
+        //显示好友窗口;
+        //TODO 读取联系人列表，放到列表窗口进行
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {

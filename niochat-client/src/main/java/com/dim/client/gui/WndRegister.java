@@ -5,7 +5,7 @@
 package com.dim.client.gui;
 
 import com.dim.client.Const;
-import com.dim.client.net.Client;
+import com.dim.client.net.Connection;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.io.IOException;
@@ -182,7 +182,7 @@ public class WndRegister extends javax.swing.JFrame {
             if(!strPwd.equals(strCfrmPwd)){
                 JOptionPane.showMessageDialog(this, "The passwords you entered do not match. Please re - enter your passwords.");
             }else{
-                final Client clt=new Client(Const.server,Const.port,account,new String(pwd));
+                final Connection clt=new Connection(Const.server,Const.port,account,new String(pwd));
                 new Thread(clt).start();
                 try {
                     clt.applyAccount(account, strPwd);

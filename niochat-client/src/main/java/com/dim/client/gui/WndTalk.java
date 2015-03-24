@@ -5,9 +5,7 @@
 package com.dim.client.gui;
 
 import com.dim.client.domain.Contact;
-import com.dim.client.msg.ConnManager;
-import com.dim.client.net.Client;
-import io.netty.channel.ChannelOutboundHandlerAdapter;
+import com.dim.client.net.Connection;
 import java.awt.HeadlessException;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -26,7 +24,7 @@ public class WndTalk extends javax.swing.JFrame {
     private Contact user = new Contact("我");
     private Contact contact;
     
-    private Client conn;
+    private Connection conn;
 
     /**
      * Creates new form Message
@@ -35,7 +33,7 @@ public class WndTalk extends javax.swing.JFrame {
         super();
     }
 
-    public WndTalk(Contact contact,Client conn) throws HeadlessException {
+    public WndTalk(Contact contact,Connection conn) throws HeadlessException {
 
         super("与 " + contact.getDisplayName() + " 聊天中");
 
@@ -334,7 +332,7 @@ public class WndTalk extends javax.swing.JFrame {
             txtaMsg.setText(null);
             logger.info("sending throu socket~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             
-            ChannelOutboundHandlerAdapter writer = ConnManager.getMessageWriteHandler();
+            
         }
     }
 }
